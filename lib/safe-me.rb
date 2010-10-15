@@ -8,19 +8,13 @@ require 'safe-me/var_args'
 
 module SafeMe
   attr_accessor :method_types
-  def safe_method(name, types = [])
+  def safe_method(name, safer)
     alias_method "__typeunsafe_#{name}__", name
     module_eval do
       method_types = {} if method_types.nil?
-      method_types[name] = types
+      method_types[name] = safer
       define_method name do |*args, &block|
-        tmp = args
-        if method_types[name].last.kind_of?(VarArgs)
-          tmp = args.slice(0, method_types[name].size-1) + [args.slice(method_types[name].size-1,args.size)]
-        end
-        tmp.size.times do |i|
-          raise ArgumentError.new("for argument #{i+1} expected type #{method_types[name][i]}") if not tmp[i].kind_of?(method_types[name][i])
-        end
+        method_types[name].check(*args)
         send(:"__typeunsafe_#{name}__",*args,&block)
       end
       alias_method "__typesafe_#{name}__", name
