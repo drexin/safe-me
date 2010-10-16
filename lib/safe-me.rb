@@ -28,6 +28,12 @@ class Module
   include SafeMe
 end
 
+class Class
+  def type_of? obj
+    obj.kind_of? self
+  end
+end
+
 Dir.glob("safe/*_safe.rb").each do |f|
   SafeLoader.instance_eval File.read(f)
 end
