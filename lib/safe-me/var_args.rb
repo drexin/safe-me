@@ -1,3 +1,4 @@
+
 class VarArgs
 
   def is_type_of? obj

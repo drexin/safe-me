@@ -1,3 +1,5 @@
+require 'safe-me/var_args'
+
 class Array
 
   class ArrayType
