@@ -17,4 +17,12 @@ module SafeMe
       SafeLoader.instance_eval File.read(f)
     end
   end
+  
+  module Rails
+    class Railtie < ::Rails::Railtie
+      config.after_initialize do
+        SafeMe.init
+      end
+    end
+  end
 end
