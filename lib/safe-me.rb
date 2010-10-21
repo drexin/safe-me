@@ -18,11 +18,9 @@ module SafeMe
     end
   end
   
-  module Rails
-    class Railtie < ::Rails::Railtie
-      config.after_initialize do
-        SafeMe.init
-      end
+  class Railtie < ::Rails::Railtie
+    config.after_initialize do
+      SafeMe.init
     end
   end
 end
