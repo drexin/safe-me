@@ -16,7 +16,7 @@ describe SafeMe do
       it "should allow this type, or nil" do
         lambda{Foo.new.another_method 3}.should_not raise_error(ArgumentError)
         lambda{Foo.new.another_method nil}.should_not raise_error(ArgumentError)
-        lambda{Foo.new.another_method "foo"}.should raise_error(ArgumentError, "for argument 1 expected type Nilable(Integer)")
+        lambda{Foo.new.another_method "foo"}.should raise_error(ArgumentError, "for argument 1 expected type Integer or nil")
       end
     end
     
@@ -25,6 +25,14 @@ describe SafeMe do
         lambda{Foo.new.give_string "a string"}.should_not raise_error(ArgumentError)
         lambda{Foo.new.give_string nil}.should raise_error(ArgumentError, "for argument 1 expected type String")
         lambda{Foo.new.give_string 1}.should raise_error(ArgumentError, "for argument 1 expected type String")
+      end
+    end
+    
+    describe "a method with an argument that should respond to a method" do
+      it "should only allow arguments that respond to this method" do
+        b = Struct.new("Bar", :bar)
+        lambda{Foo.new.baz b.new}.should_not raise_error(ArgumentError)
+        lambda{Foo.new.baz 1}.should raise_error(ArgumentError, "for argument 1 expected type RespondsTo(bar)")
       end
     end
   end

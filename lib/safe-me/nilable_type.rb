@@ -9,7 +9,7 @@ module SafeMe
     end
   
     def to_s
-      "Nilable(#{@type})"
+      "#{@type} or nil"
     end
   end
 end

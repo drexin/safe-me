@@ -1,7 +1,4 @@
-$:.unshift(File.dirname(__FILE__)) unless
-  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
-
-require 'type_safer'
+require 'safe-me/type_safer'
 
 module SafeMe
   module SafeLoader

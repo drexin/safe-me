@@ -1,5 +1,6 @@
-require 'duck_type'
-require 'nilable_type'
+require 'safe-me/duck_type'
+require 'safe-me/nilable_type'
+require 'safe-me/responds_to'
 
 module SafeMe
   class TypeSafer
@@ -19,8 +20,8 @@ module SafeMe
       end
     end
   
-    def argument i, type
-      @types[i-1] = type
+    def argument type
+      @types << type
     end
 
     def quacks_like type
@@ -29,6 +30,10 @@ module SafeMe
   
     def nilable type
       NilableType.new type
+    end
+    
+    def responds_to *methods
+      RespondsTo.new *methods
     end
   
     private :quacks_like, :argument

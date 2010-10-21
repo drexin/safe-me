@@ -10,4 +10,8 @@ class Foo
   def give_string s
     "#{s} should be a string"
   end
+  
+  def baz a
+    "#{a} should respond to :bar"
+  end
 end

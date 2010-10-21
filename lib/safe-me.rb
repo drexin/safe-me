@@ -10,18 +10,14 @@ require 'extensions/class'
 require 'extensions/hash'
 require 'extensions/array'
 
+if defined?(Rails)
+  require 'safe-me/rails'
+end
+
 module SafeMe
   def self.init
     Dir.glob("safe/*_safe.rb").each do |f|
       SafeLoader.instance_eval File.read(f)
-    end
-  end
-  
-  module Rails
-    class Railtie < ::Rails::Railtie
-      config.after_initialize do
-        SafeMe.init
-      end
     end
   end
 end
