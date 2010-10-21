@@ -5,7 +5,7 @@ class VarArgs
     obj.kind_of? @type
   end
 
-  def self.[] type
+  def self.ofType type
     self.new(type)
   end
 

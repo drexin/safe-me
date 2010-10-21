@@ -1,6 +1,6 @@
 require 'safe-me/var_args'
 
-class Array
+Array.class_eval do
 
   class ArrayType
     def initialize type
@@ -27,8 +27,8 @@ class Array
       orig_kind_of? type
     end
   end
-
-  def self.[] type
-    ArrayType.new(type)
+  
+  def self.ofType type
+    ArrayType.new type
   end
 end

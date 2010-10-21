@@ -1,4 +1,6 @@
-class Hash
+require 'extensions/module'
+
+Hash.class_eval do
   class HashType
     def initialize key_type, value_type
       @key_type = key_type
@@ -26,7 +28,7 @@ class Hash
     end
   end
 
-  def self.[] key_type, value_type
+  def self.ofType key_type, value_type
     HashType.new key_type, value_type
   end
 end

@@ -1,6 +1,7 @@
 require 'spec/classes/foo'
 require 'safe-me'
 
+SafeMe.init
 
 describe SafeMe do
   describe "a class with a safe-me description file" do
