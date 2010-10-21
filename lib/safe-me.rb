@@ -19,4 +19,4 @@ module SafeMe
   end
 end
 
-SafeMe.init
+#SafeMe.init
