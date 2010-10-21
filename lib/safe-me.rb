@@ -12,15 +12,13 @@ require 'extensions/array'
 
 
 module SafeMe
-  def self.init
-    Dir.glob("safe/*_safe.rb").each do |f|
-      SafeLoader.instance_eval File.read(f)
-    end
-  end
-  
-  class Railtie < ::Rails::Railtie
-    config.after_initialize do
-      SafeMe.init
+  module Rails
+    class Railtie < ::Rails::Railtie
+      config.after_initialize do
+        Dir.glob("safe/*_safe.rb").each do |f|
+          SafeLoader.instance_eval File.read(f)
+        end
+      end
     end
   end
 end
