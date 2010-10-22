@@ -1,6 +1,12 @@
+$:.unshift(File.dirname(__FILE__)) unless
+  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
+
+require 'lib/safe-me/version'
+
 spec = Gem::Specification.new do |s|
   s.name = 'safe-me'
-  s.version = '0.0.1'
+  s.homepage = 'http://github.com/drexin/safe-me'
+  s.version = SafeMe::VERSION
   s.has_rdoc = true
   s.extra_rdoc_files = ['LICENSE', 'README.rdoc']
   s.summary = '#{s.name}-#{s.version}'
@@ -10,6 +16,6 @@ spec = Gem::Specification.new do |s|
   
   s.add_development_dependency "rspec"
   
-  s.files = %w(LICENSE Rakefile) + Dir.glob("{lib,spec}/**/*")
-  s.require_path = "lib"
+  s.files = %w(LICENSE Rakefile) + Dir.glob("{lib,spec,safe}/**/*")
+  s.require_path = 'lib'
 end
