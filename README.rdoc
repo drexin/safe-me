@@ -40,7 +40,7 @@ The DSL ist very simple. Let me explain on an example:
     end  
   end
   
-For now there are 4 kinds of possible argument types.
+For now there are 5 kinds of possible argument types.
 
 - Classes
 
@@ -52,18 +52,21 @@ Hash: for hashes you can pass Hash.ofType(Class, Class) where the first class is
 
 - Nilable
 
-If you also want to be able to pass nil to a method, if the argument is optional for example, you can pass nilable(Class) as type
+If you also want to be able to pass nil to a method, if the argument is optional for example, you can pass nilable(Class) as type.
 
 - RespondsTo
 
-If you only want to be sure, that an argument responds to some methods you can pass responds_to(*methods) where *methods should be the method names as symbols
+If you only want to be sure, that an argument responds to some methods you can pass responds_to(*methods) where *methods should be the method names as symbols.
 
 
 - QuacksLike
 
 If you need the same responds_to on multiple methods it can be useful to create a clean room class, that contains those methods and call quacks_like(Class) instead.
-quacks_like ensures, that every public instance method of this class is also available on the object, that gets passed to the method
+quacks_like ensures, that every public instance method of this class is also available on the object, that gets passed to the method.
 
+- Unchecked
+
+If you have methods where some arguments should not be checked for their type, you can pass unchecked as type.
 
 == License:
 

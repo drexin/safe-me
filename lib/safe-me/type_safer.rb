@@ -1,6 +1,7 @@
 require 'safe-me/duck_type'
 require 'safe-me/nilable_type'
 require 'safe-me/responds_to'
+require 'safe-me/unchecked_type'
 
 module SafeMe
   class TypeSafer
@@ -34,6 +35,10 @@ module SafeMe
     
     def responds_to *methods
       RespondsTo.new *methods
+    end
+    
+    def unchecked
+      UncheckedType.instance
     end
   
     private :quacks_like, :argument

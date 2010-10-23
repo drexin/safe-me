@@ -1,6 +1,6 @@
 require 'safe-me/var_args'
 
-class Module
+Module.class_eval do
   attr_accessor :method_types
   def safe_method(name, safer)
     alias_method "__typeunsafe_#{name}__", name

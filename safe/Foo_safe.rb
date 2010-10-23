@@ -1,4 +1,5 @@
-require 'spec/classes/foo'
+require File.expand_path(File.dirname(__FILE__)) + '/spec/classes/foo'
+
 
 safe Foo do
   for_method :a_method do

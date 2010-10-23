@@ -1,4 +1,4 @@
-require 'spec/classes/foo'
+require File.join(File.expand_path(File.dirname(__FILE__)), '../classes/foo')
 require 'safe-me'
 
 SafeMe.init
@@ -33,6 +33,15 @@ describe SafeMe do
         b = Struct.new("Bar", :bar)
         lambda{Foo.new.baz b.new}.should_not raise_error(ArgumentError)
         lambda{Foo.new.baz 1}.should raise_error(ArgumentError, "for argument 1 expected type RespondsTo(bar)")
+      end
+    end
+    
+    describe "a method with an argument that should be unchecked" do
+      it "should allow arguments of any type for that argument" do
+        lambda{Foo.new.unchecked_method 1, "a"}.should_not raise_error(ArgumentError)
+        lambda{Foo.new.unchecked_method 1, 1}.should_not raise_error(ArgumentError)
+        lambda{Foo.new.unchecked_method 1, nil}.should_not raise_error(ArgumentError)
+        lambda{Foo.new.unchecked_method 1, [1,2,3,"a"]}.should_not raise_error(ArgumentError)
       end
     end
   end

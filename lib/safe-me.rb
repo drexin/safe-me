@@ -16,7 +16,7 @@ end
 
 module SafeMe
   def self.init
-    Dir.glob("safe/*_safe.rb").each do |f|
+    Dir.glob("safe/**/*_safe.rb").each do |f|
       SafeLoader.instance_eval File.read(f)
     end
   end

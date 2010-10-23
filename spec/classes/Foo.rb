@@ -14,4 +14,8 @@ class Foo
   def baz a
     "#{a} should respond to :bar"
   end
+  
+  def unchecked_method a,b
+    "#{b} should be unchecked"
+  end
 end
