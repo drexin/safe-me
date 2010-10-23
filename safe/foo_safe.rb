@@ -18,4 +18,9 @@ safe Foo do
   for_method :baz do
     argument responds_to :bar
   end
+  
+  for_method :unchecked_method do
+    argument Integer
+    argument unchecked
+  end
 end
