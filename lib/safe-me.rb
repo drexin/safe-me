@@ -10,14 +10,18 @@ require 'extensions/class'
 require 'extensions/hash'
 require 'extensions/array'
 
-if defined?(Rails)
-  require 'safe-me/rails'
-end
-
 module SafeMe
   def self.init
     Dir.glob("safe/**/*_safe.rb").each do |f|
       SafeLoader.instance_eval File.read(f)
     end
+  end
+end
+
+if defined?(Rails)
+  if Rails.version >= '3.0.0'
+    require 'safe-me/rails'
+  else
+    SafeMe.init
   end
 end
