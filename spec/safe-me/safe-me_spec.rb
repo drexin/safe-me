@@ -44,5 +44,13 @@ describe SafeMe do
         lambda{Foo.new.unchecked_method 1, [1,2,3,"a"]}.should_not raise_error(ArgumentError)
       end
     end
+    
+    describe "adding typechecking to a method with only one call of arguments for several args" do
+      it "should only allow those types as args" do
+        lambda{Foo.new.test_arguments 1, 2, "foo", nil}.should_not raise_error(ArgumentError)
+        lambda{Foo.new.test_arguments "1", "2", 1, [1,2,3]}.should raise_error(ArgumentError)
+      end
+    end
+      
   end
 end

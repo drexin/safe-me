@@ -37,7 +37,11 @@ The DSL ist very simple. Let me explain on an example:
       #for each argument the method takes, you have to call argument
       #with the type as parameter
       argument Integer
-    end  
+      
+      #there is also a method called arguments, which takes multiple types
+      #so you don't have to call argument for every single arg
+      arguments String, Array.ofType(Integer), unchecked
+    end
   end
   
 For now there are 5 kinds of possible argument types.

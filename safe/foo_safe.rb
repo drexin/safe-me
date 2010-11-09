@@ -23,4 +23,8 @@ safe Foo do
     argument Integer
     argument unchecked
   end
+  
+  for_method :test_arguments do
+    arguments Integer, Integer, String, nilable(Array.ofType(String))
+  end
 end

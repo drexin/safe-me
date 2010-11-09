@@ -24,6 +24,12 @@ module SafeMe
     def argument type
       @types << type
     end
+    
+    def arguments *types
+      types.each do |t|
+        argument t
+      end
+    end
 
     def quacks_like type
       DuckType.new type

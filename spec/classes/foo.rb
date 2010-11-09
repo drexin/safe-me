@@ -18,4 +18,8 @@ class Foo
   def unchecked_method a,b
     "#{b} should be unchecked"
   end
+  
+  def test_arguments a,b,c,d
+    "works"
+  end
 end
